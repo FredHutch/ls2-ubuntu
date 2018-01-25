@@ -16,6 +16,3 @@ This container does the following:
   * `LS2_UID` Default: `500` (this lines up with ec2_user)
   * `LS2_GROUPNAME` Default: `neo`
   * `LS2_GID` Default: `500`
-  * `DEPLOY_PREFIX` Default: `/app`
-
-The DEPLOY_PREFIX is where 
