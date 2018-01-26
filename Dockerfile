@@ -19,13 +19,13 @@ ENV LS2_GID=${LS2_GID}
 # User for LS2 containers
 RUN groupadd -g ${LS2_GID} ${LS2_GROUPNAME} && useradd -u ${LS2_UID} -g ${LS2_GROUPNAME} -ms /bin/bash ${LS2_USERNAME}
 
+# set up our directory for metadata
+RUN mkdir /ls2 && chown ${LS2_USERNAME}.${LS2_GROUPNAME} /ls2
+
+# Generate a list of installed packages
+RUN dpkg -l > ls2/installed_pkgs
+
 # switch to LS2 user for future actions
 USER ${LS2_USERNAME}
 WORKDIR /home/${LS2_USERNAME}
 SHELL ["/bin/bash", "-c"]
-
-# set up our directory for metadata
-RUN mkdir /home/${LS2_USERNAME}/.ls2
-
-# Generate a list of installed packages
-RUN dpkg -l > .ls2/installed_pkgs
